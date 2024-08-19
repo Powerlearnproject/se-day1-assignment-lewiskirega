@@ -17,6 +17,7 @@ Identify and describe at least three key milestones in the evolution of software
 
 
 List and briefly explain the phases of the Software Development Life Cycle.
+
     1. Requirements: Gathering and documenting users needs
     2. Design Designing of the software architecture
     3. Implementation: Writing code and building the software
@@ -25,6 +26,7 @@ List and briefly explain the phases of the Software Development Life Cycle.
     6. Providing maintenance support such as updates
 
 Compare and contrast the Waterfall and Agile methodologies. Provide examples of scenarios where each would be appropriate.
+
      Agile methods are iterative approach focused on flexibility , collaboration and responding to change while waterfall methodology is a sequential approach with distinct phases
 
 
@@ -39,12 +41,14 @@ Describe the roles and responsibilities of a Software Developer, a Quality Assur
 
 
 Discuss the importance of Integrated Development Environments (IDEs) and Version Control Systems (VCS) in the software development process. Give examples of each.
-    IDE is a tol that helps in writing, testing, debugging and testing code eg. visual studio code and VCS is  important because it tracks changes made to code and helps in coordianting work among team members.eg. git
+
+    IDE is a tol that helps in writing, testing, debugging and testing code eg. visual studio code and VCS is  important because it tracks changes made to code and helps in co-ordinating work among team members.eg. git
 
 
 What are some common challenges faced by software engineers? Provide strategies to overcome these challenges.
-     1. Tight deadlines , it cna be overcomed by effective communication with the client and the developer
-     2. Changing requirements 
+
+    1. Tight deadlines: Communicate effectively with stakeholders, manage time effectively, and prioritize tasks.
+    2. Changing requirements: Be flexible and adaptable, and have a clear understanding of the project vision and requirements.
 
 
 Explain the different types of testing (unit, integration, system, and acceptance) and their importance in software quality assurance.
