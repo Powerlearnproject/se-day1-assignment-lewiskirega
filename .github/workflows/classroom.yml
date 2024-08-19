@@ -1,39 +1,89 @@
-name: Autograding Tests
-'on':
-- push
-- repository_dispatch
-permissions:
-  checks: write
-  actions: read
-  contents: read
-jobs:
-  run-autograding-tests:
-    runs-on: ubuntu-latest
-    if: github.actor != 'github-classroom[bot]'
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-    - name: Quiz 1
-      id: quiz-1
-      uses: classroom-resources/autograding-io-grader@v1
-      with:
-        test-name: Quiz 1
-        setup-command: ''
-        command: Which of the following best describes software engineering?
+name: Quiz Grading
 
-        input: |-
-          a) The study of hardware components
-          b) The process of designing, developing, and maintaining software
-          c) The analysis of networking protocols
-          d) The management of data storage systems
-        expected-output: b) The process of designing, developing, and maintaining
-          software
-        comparison-method: exact
-        timeout: 10
-        max-score: 10
-    - name: Autograding Reporter
-      uses: classroom-resources/autograding-grading-reporter@v1
-      env:
-        QUIZ-1_RESULTS: "${{steps.quiz-1.outputs.result}}"
-      with:
-        runners: quiz-1
+on: [push]
+
+jobs:
+  quiz:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Run Quiz Grading
+      run: |
+        # Define the quiz questions and answers
+        quiz_questions:
+          - question: "Which of the following best describes software engineering?"
+            options:
+              a: "The study of hardware components"
+              b: "The process of designing, developing, and maintaining software"
+              c: "The analysis of networking protocols"
+              d: "The management of data storage systems"
+            correct_answer: "b"
+
+          - question: "Identify and describe at least three key milestones in the evolution of software engineering."
+            correct_answer:
+              - "The first compiler: The invention of the first compiler in the 1950s marked a significant milestone in the evolution of software engineering."
+              - "The development of the first integrated development environment (IDE): The advent of IDEs in the 1980s further revolutionized software engineering."
+              - "The rise of agile methodologies: The emergence of agile methodologies in the 1990s represents another significant milestone in software engineering."
+
+          - question: "List and briefly explain the phases of the Software Development Life Cycle."
+            correct_answer:
+              - "Requirements: Gathering and documenting users' needs."
+              - "Design: Designing the software architecture."
+              - "Implementation: Writing code and building the software."
+              - "Testing: Conducting various tests to ensure the software meets the standards."
+              - "Deployment: Releasing the software to the user."
+              - "Maintenance: Providing ongoing support such as updates."
+
+          - question: "Compare and contrast the Waterfall and Agile methodologies. Provide examples of scenarios where each would be appropriate."
+            correct_answer: "Agile methods are iterative approaches focused on flexibility, collaboration, and responding to change, while the Waterfall methodology is a sequential approach with distinct phases."
+
+          - question: "Describe the roles and responsibilities of a Software Developer, a Quality Assurance Engineer, and a Project Manager in a software engineering team."
+            correct_answer:
+              Software_Developer: "Responsible for designing, developing, testing, and maintaining software systems."
+              Quality_Assurance_Engineer: "Developing and implementing testing protocols to ensure that software systems meet the required standards."
+              Project_Manager: "Overseeing the entire software development process, including planning, coordinating, and controlling the project lifecycle."
+
+          - question: "Discuss the importance of Integrated Development Environments (IDEs) and Version Control Systems (VCS) in the software development process. Give examples of each."
+            correct_answer:
+              IDE: "A tool that helps in writing, testing, debugging, and testing code, e.g., Visual Studio Code."
+              VCS: "Important because it tracks changes made to code and helps in coordinating work among team members, e.g., Git."
+
+          - question: "What are some common challenges faced by software engineers? Provide strategies to overcome these challenges."
+            correct_answer:
+              - "Tight deadlines: Communicate effectively with stakeholders, manage time effectively, and prioritize tasks."
+              - "Changing requirements: Be flexible and adaptable, and have a clear understanding of the project vision and requirements."
+
+          - question: "Explain the different types of testing (unit, integration, system, and acceptance) and their importance in software quality assurance."
+            correct_answer:
+              Unit_Testing: "Testing individual units of code to ensure they behave as expected."
+              Integration_Testing: "Testing integrated code units to ensure they work together as expected."
+              System_Testing: "Testing a complete software system to ensure it meets specified requirements."
+              Acceptance_Testing: "Testing a software system to ensure it meets the user's acceptance criteria."
+
+          - question: "Define prompt engineering and discuss its importance in interacting with AI models."
+            correct_answer: "Prompt engineering is the process of designing and optimizing natural language prompts to get the desired response from an AI model."
+
+          - question: "Provide an example of a vague prompt and then improve it by making it clear, specific, and concise. Explain why the improved prompt is more effective."
+            correct_answer:
+              Vague: "What is the best way to travel?"
+              Improved: "What is the fastest way to travel from New York to Los Angeles?"
+              Explanation: "The improved prompt is more specific and concise, making it easier for the AI model to understand and provide a relevant response."
+
+        # Iterate through the questions and print them
+        for question in "${quiz_questions[@]}"; do
+          echo "Question: ${question['question']}"
+          if [[ -n "${question['options']}" ]]; then
+            echo "Options:"
+            for option, text in "${question['options'].items()}"; do
+              echo "${option}) ${text}"
+            done
+          fi
+          echo "Correct Answer: ${question['correct_answer']}"
+        done
+
+    - name: Complete Quiz
+      run: echo "Quiz Completed!"
+
