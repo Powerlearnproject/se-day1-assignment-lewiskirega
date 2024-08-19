@@ -12,9 +12,9 @@ Explain what software engineering is and discuss its importance in the technolog
 
 Identify and describe at least three key milestones in the evolution of software engineering.
     
-    1. The first compiler: The invention of the first compiler in the 1950s marked a significant milestone in the evolution of software engineering. The compiler allowed for the automated translation of high-level languages into machine code, which greatly increased the speed and efficiency of software development.
-    2. The development of the first integrated development environment (IDE): The advent of IDEs in the 1980s further revolutionized software engineering. IDEs provide a comprehensive set of tools and features that enhance productivity and streamline the software development process. They include features like code completion, debugging tools, and version control systems.
-    3. The rise of agile methodologies: The emergence of agile methodologies in the 1990s represents another significant milestone in software engineering. Agile methodologies, such as Scrum and Kanban, emphasize collaboration, flexibility, and continuous improvement. They have revolutionized the software development industry by enabling faster and more iterative development cycles.
+    1. The first compiler: The invention of the first compiler in the 1950s marked a significant milestone in the evolution of software engineering. The compiler allowed for the automated translation of high-level languages into machine code,             which greatly increased the speed and efficiency of software development.
+    2. The development of the first integrated development environment (IDE): The advent of IDEs in the 1980s further revolutionized software engineering. IDEs provide a comprehensive set of tools and features that enhance productivity and                 streamline the software development process. They include features like code completion, debugging tools, and version control systems.
+    3. The rise of agile methodologies: The emergence of agile methodologies in the 1990s represents another significant milestone in software engineering. Agile methodologies, such as Scrum and Kanban, emphasize collaboration, flexibility, and         continuous improvement. They have revolutionized the software development industry by enabling faster and more iterative development cycles.
 
 
 List and briefly explain the phases of the Software Development Life Cycle.
