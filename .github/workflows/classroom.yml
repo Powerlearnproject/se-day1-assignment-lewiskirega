@@ -13,77 +13,48 @@ jobs:
     - name: Run Quiz Grading
       run: |
         # Define the quiz questions and answers
-        quiz_questions:
-          - question: "Which of the following best describes software engineering?"
-            options:
-              a: "The study of hardware components"
-              b: "The process of designing, developing, and maintaining software"
-              c: "The analysis of networking protocols"
-              d: "The management of data storage systems"
-            correct_answer: "b"
+        declare -A quiz_questions
 
-          - question: "Identify and describe at least three key milestones in the evolution of software engineering."
-            correct_answer:
-              - "The first compiler: The invention of the first compiler in the 1950s marked a significant milestone in the evolution of software engineering."
-              - "The development of the first integrated development environment (IDE): The advent of IDEs in the 1980s further revolutionized software engineering."
-              - "The rise of agile methodologies: The emergence of agile methodologies in the 1990s represents another significant milestone in software engineering."
+        quiz_questions[0_question]="Which of the following best describes software engineering?"
+        quiz_questions[0_options]="a) The study of hardware components, b) The process of designing, developing, and maintaining software, c) The analysis of networking protocols, d) The management of data storage systems"
+        quiz_questions[0_answer]="b"
 
-          - question: "List and briefly explain the phases of the Software Development Life Cycle."
-            correct_answer:
-              - "Requirements: Gathering and documenting users' needs."
-              - "Design: Designing the software architecture."
-              - "Implementation: Writing code and building the software."
-              - "Testing: Conducting various tests to ensure the software meets the standards."
-              - "Deployment: Releasing the software to the user."
-              - "Maintenance: Providing ongoing support such as updates."
+        quiz_questions[1_question]="Identify and describe at least three key milestones in the evolution of software engineering."
+        quiz_questions[1_answer]="The first compiler, The development of the first IDE, The rise of agile methodologies"
 
-          - question: "Compare and contrast the Waterfall and Agile methodologies. Provide examples of scenarios where each would be appropriate."
-            correct_answer: "Agile methods are iterative approaches focused on flexibility, collaboration, and responding to change, while the Waterfall methodology is a sequential approach with distinct phases."
+        quiz_questions[2_question]="List and briefly explain the phases of the Software Development Life Cycle."
+        quiz_questions[2_answer]="Requirements, Design, Implementation, Testing, Deployment, Maintenance"
 
-          - question: "Describe the roles and responsibilities of a Software Developer, a Quality Assurance Engineer, and a Project Manager in a software engineering team."
-            correct_answer:
-              Software_Developer: "Responsible for designing, developing, testing, and maintaining software systems."
-              Quality_Assurance_Engineer: "Developing and implementing testing protocols to ensure that software systems meet the required standards."
-              Project_Manager: "Overseeing the entire software development process, including planning, coordinating, and controlling the project lifecycle."
+        quiz_questions[3_question]="Compare and contrast the Waterfall and Agile methodologies. Provide examples of scenarios where each would be appropriate."
+        quiz_questions[3_answer]="Agile methods are iterative, Waterfall is sequential"
 
-          - question: "Discuss the importance of Integrated Development Environments (IDEs) and Version Control Systems (VCS) in the software development process. Give examples of each."
-            correct_answer:
-              IDE: "A tool that helps in writing, testing, debugging, and testing code, e.g., Visual Studio Code."
-              VCS: "Important because it tracks changes made to code and helps in coordinating work among team members, e.g., Git."
+        quiz_questions[4_question]="Describe the roles and responsibilities of a Software Developer, a Quality Assurance Engineer, and a Project Manager in a software engineering team."
+        quiz_questions[4_answer]="Software Developer, Quality Assurance Engineer, Project Manager"
 
-          - question: "What are some common challenges faced by software engineers? Provide strategies to overcome these challenges."
-            correct_answer:
-              - "Tight deadlines: Communicate effectively with stakeholders, manage time effectively, and prioritize tasks."
-              - "Changing requirements: Be flexible and adaptable, and have a clear understanding of the project vision and requirements."
+        quiz_questions[5_question]="Discuss the importance of Integrated Development Environments (IDEs) and Version Control Systems (VCS) in the software development process."
+        quiz_questions[5_answer]="IDE: Visual Studio Code, VCS: Git"
 
-          - question: "Explain the different types of testing (unit, integration, system, and acceptance) and their importance in software quality assurance."
-            correct_answer:
-              Unit_Testing: "Testing individual units of code to ensure they behave as expected."
-              Integration_Testing: "Testing integrated code units to ensure they work together as expected."
-              System_Testing: "Testing a complete software system to ensure it meets specified requirements."
-              Acceptance_Testing: "Testing a software system to ensure it meets the user's acceptance criteria."
+        quiz_questions[6_question]="What are some common challenges faced by software engineers? Provide strategies to overcome these challenges."
+        quiz_questions[6_answer]="Tight deadlines, Changing requirements"
 
-          - question: "Define prompt engineering and discuss its importance in interacting with AI models."
-            correct_answer: "Prompt engineering is the process of designing and optimizing natural language prompts to get the desired response from an AI model."
+        quiz_questions[7_question]="Explain the different types of testing (unit, integration, system, and acceptance) and their importance in software quality assurance."
+        quiz_questions[7_answer]="Unit Testing, Integration Testing, System Testing, Acceptance Testing"
 
-          - question: "Provide an example of a vague prompt and then improve it by making it clear, specific, and concise. Explain why the improved prompt is more effective."
-            correct_answer:
-              Vague: "What is the best way to travel?"
-              Improved: "What is the fastest way to travel from New York to Los Angeles?"
-              Explanation: "The improved prompt is more specific and concise, making it easier for the AI model to understand and provide a relevant response."
+        quiz_questions[8_question]="Define prompt engineering and discuss its importance in interacting with AI models."
+        quiz_questions[8_answer]="Prompt engineering optimizes natural language prompts"
+
+        quiz_questions[9_question]="Provide an example of a vague prompt and then improve it by making it clear, specific, and concise."
+        quiz_questions[9_answer]="Vague: What is the best way to travel?, Improved: What is the fastest way to travel from New York to Los Angeles?"
 
         # Iterate through the questions and print them
-        for question in "${quiz_questions[@]}"; do
-          echo "Question: ${question['question']}"
-          if [[ -n "${question['options']}" ]]; then
-            echo "Options:"
-            for option, text in "${question['options'].items()}"; do
-              echo "${option}) ${text}"
-            done
+        for i in {0..9}; do
+          echo "Question $((i+1)): ${quiz_questions[${i}_question]}"
+          if [ ! -z "${quiz_questions[${i}_options]}" ]; then
+            echo "Options: ${quiz_questions[${i}_options]}"
           fi
-          echo "Correct Answer: ${question['correct_answer']}"
+          echo "Correct Answer: ${quiz_questions[${i}_answer]}"
+          echo ""
         done
 
     - name: Complete Quiz
       run: echo "Quiz Completed!"
-
