@@ -11,9 +11,6 @@ Explain what software engineering is and discuss its importance in the technolog
     c. The analysis of networking protocols
     d. The management of data storage systems
     
-    Software engineering is important in the technology industry because it allows for the creation of complex and sophisticated software systems that are used in a wide range of industries, from healthcare and finance to transportation and entertainment. Software engineering is also important because it allows for the creation of software systems that are reliable, efficient, and scalable. 
-
-
 Identify and describe at least three key milestones in the evolution of software engineering.
     
     1. The first compiler: The invention of the first compiler in the 1950s marked a significant milestone in the evolution of software engineering. The compiler allowed for the automated translation of high-level languages into machine code,which greatly increased the speed and efficiency of software development.
