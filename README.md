@@ -43,7 +43,7 @@ Describe the roles and responsibilities of a Software Developer, a Quality Assur
 
 Discuss the importance of Integrated Development Environments (IDEs) and Version Control Systems (VCS) in the software development process. Give examples of each.
 
-    IDE is a tol that helps in writing, testing, debugging and testing code eg. visual studio code and VCS is  important because it tracks changes made to code and helps in co-ordinating work among team members.eg. git
+    IDE is a tool that helps in writing, testing, debugging and testing code eg. visual studio code and VCS is  important because it tracks changes made to code and helps in co-ordinating work among team members.eg. git
 
 
 What are some common challenges faced by software engineers? Provide strategies to overcome these challenges.
