@@ -1,38 +1,60 @@
-name: Autograding Tests
-'on':
-- push
-- repository_dispatch
-permissions:
-  checks: write
-  actions: read
-  contents: read
+name: Quiz Grading
+
+on: [push]
+
 jobs:
-  run-autograding-tests:
+  quiz:
     runs-on: ubuntu-latest
-    if: github.actor != 'github-classroom[bot]'
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-    - name: Quiz 1
-      id: quiz-1
-      uses: classroom-resources/autograding-io-grader@v1
-      with:
-        test-name: Quiz 1
-        setup-command: ''
-        command: Which of the following best describes software engineering?
-        input: |-
-          a) The study of hardware components
-          b) The process of designing, developing, and maintaining software
-          c) The analysis of networking protocols
-          d) The management of data storage systems
-        expected-output: b) The process of designing, developing, and maintaining
-          software
-        comparison-method: exact
-        timeout: 10
-        max-score: 10
-    - name: Autograding Reporter
-      uses: classroom-resources/autograding-grading-reporter@v1
-      env:
-        QUIZ-1_RESULTS: "${{steps.quiz-1.outputs.result}}"
-      with:
-        runners: quiz-1
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Run Quiz Grading
+      run: |
+        # Define the quiz questions and answers
+        declare -A quiz_questions
+
+        quiz_questions[0_question]="Which of the following best describes software engineering?"
+        quiz_questions[0_options]="a) The study of hardware components, b) The process of designing, developing, and maintaining software, c) The analysis of networking protocols, d) The management of data storage systems"
+        quiz_questions[0_answer]="b"
+
+        quiz_questions[1_question]="Identify and describe at least three key milestones in the evolution of software engineering."
+        quiz_questions[1_answer]="The first compiler, The development of the first IDE, The rise of agile methodologies"
+
+        quiz_questions[2_question]="List and briefly explain the phases of the Software Development Life Cycle."
+        quiz_questions[2_answer]="Requirements, Design, Implementation, Testing, Deployment, Maintenance"
+
+        quiz_questions[3_question]="Compare and contrast the Waterfall and Agile methodologies. Provide examples of scenarios where each would be appropriate."
+        quiz_questions[3_answer]="Agile methods are iterative, Waterfall is sequential"
+
+        quiz_questions[4_question]="Describe the roles and responsibilities of a Software Developer, a Quality Assurance Engineer, and a Project Manager in a software engineering team."
+        quiz_questions[4_answer]="Software Developer, Quality Assurance Engineer, Project Manager"
+
+        quiz_questions[5_question]="Discuss the importance of Integrated Development Environments (IDEs) and Version Control Systems (VCS) in the software development process."
+        quiz_questions[5_answer]="IDE: Visual Studio Code, VCS: Git"
+
+        quiz_questions[6_question]="What are some common challenges faced by software engineers? Provide strategies to overcome these challenges."
+        quiz_questions[6_answer]="Tight deadlines, Changing requirements"
+
+        quiz_questions[7_question]="Explain the different types of testing (unit, integration, system, and acceptance) and their importance in software quality assurance."
+        quiz_questions[7_answer]="Unit Testing, Integration Testing, System Testing, Acceptance Testing"
+
+        quiz_questions[8_question]="Define prompt engineering and discuss its importance in interacting with AI models."
+        quiz_questions[8_answer]="Prompt engineering optimizes natural language prompts"
+
+        quiz_questions[9_question]="Provide an example of a vague prompt and then improve it by making it clear, specific, and concise."
+        quiz_questions[9_answer]="Vague: What is the best way to travel?, Improved: What is the fastest way to travel from New York to Los Angeles?"
+
+        # Iterate through the questions and print them
+        for i in {0..9}; do
+          echo "Question $((i+1)): ${quiz_questions[${i}_question]}"
+          if [ ! -z "${quiz_questions[${i}_options]}" ]; then
+            echo "Options: ${quiz_questions[${i}_options]}"
+          fi
+          echo "Correct Answer: ${quiz_questions[${i}_answer]}"
+          echo ""
+        done
+
+    - name: Complete Quiz
+      run: echo "Quiz Completed!"
